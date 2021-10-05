@@ -1,8 +1,9 @@
 import discord
 from discord.ext import commands
+import sqlite3
+from Model import DataManager
 
 bot = commands.Bot(command_prefix='')
-
 # MARK - bot commend
 @bot.command()
 async def ping(ctx):
@@ -30,10 +31,9 @@ async def registry(ctx, member : discord.Member = None):
 # MARK - return Server user registration
 @bot.command()
 async def userRecord(ctx,*args):
-    folder = open('Server_user.txt','a')
-    folder.writelines(f'Name : {args[0]} Date of registration to the server : {args[1]} Age : {args[2]} User Id : {args[3]} \n')
-    folder.close()
-    await ctx.reply(f'Name : {args[0]} Date of registration to the server : {args[1]} Age : {args[2]} User Id : {args[3]}')
+    name, date, age, userId = args[0], args[1], args[2], args[3]
+    DataManager.addData(name,date,age,userId)
+    await ctx.reply(f'Name : {name} Date : {date} Age : {age} User Id : {userId}')
 
 # MARK - return get user id
 @bot.command()
