@@ -8,3 +8,11 @@ def addData(Name,Date,Age,User_Id):
     im.execute(insertData)
     db.commit()
     db.close()
+# MARK - Shows the information of all registered users in the database
+def getUserAllData():
+    db = sqlite3.connect('ServerUserData.db')
+    im = db.cursor()
+    im.execute("""SELECT * FROM User""")
+    data = im.fetchall()
+    db.close()
+    return data
