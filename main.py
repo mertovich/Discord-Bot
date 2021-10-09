@@ -46,5 +46,10 @@ async def getUserId(ctx,member : discord.user.User = None):
 async def getUserAllData(ctx):
     await ctx.reply(DataManager.getUserData())
 
+# MARK - User id shows the matching user
+@bot.command()
+async def getUser(ctx,*args):
+    await ctx.reply(DataManager.getUser(args[0]))
+
 # MARK - Discord bot TOKEN
 bot.run('')
