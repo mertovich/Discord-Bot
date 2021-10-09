@@ -16,3 +16,11 @@ def getUserAllData():
     data = im.fetchall()
     db.close()
     return data
+# MARK - Returns the user matching the entered user id
+def getUser(user_Id):
+    db = sqlite3.connect('ServerUserData.db')
+    im = db.cursor()
+    im.execute(f'''SELECT * FROM User WHERE user_Id = "{user_Id}"''')
+    data = im.fetchall()
+    db.close()
+    return data
